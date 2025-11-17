@@ -35,8 +35,77 @@ public:
 
 //========= MAIN ========
 int main(){
-return 0;
-}
+
+	Trie autoComplete;
+	
+	autoComplete.insertWord("cat");
+	autoComplete.insertWord("car");
+	autoComplete.insertWord("cart");
+	autoComplete.insertWord("dog");
+	autoComplete.insertWord("dove");
+	autoComplete.insertWord("door");
+
+	int choice;
+	string input;
+
+	do{
+		cout << "\n-----AUTOCOMPLETE MENU-----\n";
+		cout << "1. Insert Word \n";
+		cout << "2. Search Word \n";
+		cout << "3. Delete Word \n";
+		cout << "4. AutoComplete Suggest \n";
+		cout << "5. Exit \n";
+		cout << "Enter choice: ";
+		cin >> choice;
+
+		switch(choice){
+			case 1:
+			cout << "Enter word: ";
+			cin >> input;
+			autoComplete.insertWord(input);
+			cout << "Inserted. \n";
+			break;
+			
+			case 2:
+			cout << "Enter word: ";
+			cin >> input;
+			cout << (autoComplete.searchWord(input) ? "Found.\n" : "Not Found. \n");
+			break;
+
+			case 3:	
+			cout << "Enter word: ";
+			cin >> input;
+			autoComplete.deleteWord(input);
+			break;
+
+			case 4:
+			cout << "Enter prefix: ";
+			cin >> input;
+			{
+			  vector<string> out = autoComplete.suggestWords(input);
+			  if(out.empty()){
+				cout << "No suggestions. \n";
+			    }else{
+				cout << "Suggestions: \n";
+				for(auto& s : out){
+				 cout << " - " << s << "\n";
+				}
+			    }
+			}
+			break;
+
+			case 5: 
+			cout << "Goodbye! \n";
+			break;
+			
+			default: 
+			cout << "Invalid choice. \n";
+		}
+
+		}while(choice != 5);
+
+return 0;	
+};
 
 
 
@@ -70,7 +139,7 @@ void Trie::insertWord(const string& word){
 
 
 //-----SEARCH-----
-bool Trie:: searchWord(const string& word){
+bool Trie::searchWord(const string& word){
 	TrieNode* current = root;
 
 	for(char ch : word){
@@ -114,7 +183,7 @@ if(!node){
 	  }
 	}
 
-	reutrn true;
+	return true;
 	}
 
 	int idx = word[depth] - key;
