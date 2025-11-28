@@ -1,0 +1,35 @@
+	Trie AutoComplete System
+
+	A Trie based autocomplete system works by organizing words
+where each level represents a character. One of the main strenghts
+of this design is that the time needed to insert a word, search for	
+a word, remove a word, or look up a prefix depends only on the numbers
+of letters in the prefix. The size of the entire dictionary does not
+affect those actions. This gives the autocomplete system consistently
+fast performance, which is important for real time typing and search
+features.
+	Testing autocomplete is straight foward this this structure 
+because every actions work the same way. The system follows each letter
+of the input one step at a time. This makes it easy to see how the
+system reacts during tests. For example, testers can check how fast
+suggestions appear, how the system behaves with short or long prefixes,
+and what happens when a prefix dosent match anything. If the prefix exists
+in the Trie, the system goes into a branch that holds all related words.
+If it dosent the result is simply an empty list. The behavior is consistent
+so it is easy to test accuracy, speed and error handling. 
+	Inserting, searching and deleting can also be tested separately
+because each operation depends on the same logic. Patters such as shared 
+prefixes, long worrds or group of related words can be used to observe
+system behavior under different conditions. This includes how shared branches are reused, how many suggestions appear under certain nodes and
+how many suggestions appear under certain nodes. The predictable structure
+makes it easier to analyze performance and correctness during experiments.
+	Although efficient, this design also has some limits. Every node 
+stores an array of 26 pointers, one for each lowercase lette, even though
+most of these remain empty. This increases the memory usage. The system 
+also works only with lowercase letters because it uses fixed postions from
+0 to 25 for character indexing. Another limitation is that suggestions depend
+strictly on matching the beginning of the word. If the user types the first
+letter incorrectly the system cannot offer the autocomplete task.
+	Despite these drawbacks, the Trie offers fast lookups and clear
+prefix organization. These qualities make it a strong and dependable structure
+for autocomplete systems that requiere quick and accurate word suggestions.
